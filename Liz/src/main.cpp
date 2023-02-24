@@ -2,13 +2,24 @@
 #include <fstream>
 #include <string>
 
+static int errorCode = 0;
+
 int main(int argc, char** argv) 
 {
+	std::ifstream file;
+	if (argc == 1) 
+	{
+		std::cout << "Not Enough Arguments!\n     Usage: Liz [script]";
+	}
+	else if (argc == 2)
+	{
+		file = std::ifstream(argv[1], std::ios::in | std::ios::binary);
+	}
+
 	/* Implementing the Parser */
 	/* Step 1 - read the file into the memory */
 
 	// read the file
-	std::ifstream file("E:/dev/liz/Liz/examples/hello world.liz", std::ios::in | std::ios::binary);
 	if (!file.is_open()) 
 	{
 		std::cerr << "can't read the file, the path might be incorrect or the file may not exist!";
